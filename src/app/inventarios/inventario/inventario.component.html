@@ -1,0 +1,425 @@
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * -->
+<!-- * * * * * * * * * * * JERSON GALVEZ ENSUNCHO * * * * * * * * * * * -->
+<!-- ******* * * * * * * * PROYECTO INVENTSOFT * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+
+<div class="min-height-300 bg-default position-absolute w-100"></div>
+<app-menu></app-menu>
+<main class="main-content position-relative border-radius-lg">
+  <div class="container-fluid py-6">
+    <div class="row ">
+      <div class="card">
+        <br>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                  <li class="breadcrumb-item text-sm"><a class="opacity-5 " href="javascript:;">InventSoft</a></li>
+                  <li class="breadcrumb-item text-sm  active" aria-current="page">Inventarios</li>
+                </ol>
+              </nav>
+              <div class="d-flex align-items-center">
+                <p class="mb-0 h6 text-uppercase ">inventarios</p>
+                <button
+                  class="btn btn-primary text-white font-weight-bold btn-xs ms-auto"
+                  data-bs-toggle="modal" data-bs-target="#agregarProducto"
+                >
+                  <i class="fas fa-pen"></i> Agregar producto
+                </button>
+                <button
+                  class="btn btn-dark text-white font-weight-bold btn-xs mx-2"
+                  data-bs-toggle="modal" data-bs-target="#consulta"
+                >
+                  <i class="fas fa-plus"></i> Consulta
+                </button>
+                <button
+                  class="btn btn-success text-white font-weight-bold btn-xs mx-2"
+                  data-bs-toggle="modal" data-bs-target="#entrada"
+                >
+                  <i class="fas fa-plus"></i> Entrada
+                </button>
+                <button
+                  class="btn btn-danger text-white font-weight-bold btn-xs mx-2"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                >
+                  <i class="fas fa-plus"></i> Salida
+                </button>
+              </div>
+            </div>
+          </div>
+        <div class="row mt-1">
+          <div class="col-md-8">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover">
+                <thead style="background-color: black !important;">
+                  <tr>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12"></th><!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            ...
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Understood</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">IMAGEN</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CODIGO</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">NOMBRE</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CATEGORIA</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">VALOR</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">STOCK</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" class="form-control form-control-sm">
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Usuario</label>
+                  <input type="text" class="form-control form-control-sm">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group ">
+                  <label>Contraseña</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control form-control-sm">
+                    <!-- <button class="btn btn-primary" type="button"> <i class="fas fa-eye"></i> </button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Telefono</label>
+              <input type="number" class="form-control form-control-sm">
+            </div>
+            <div class="form-group">
+              <label>Rol Usuario</label>
+              <select
+                class="form-control form-control-sm"
+              >
+                <option value="">Administrador</option>
+                <option value="">Vendedor</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Estado</label>
+              <select
+                class="form-control form-control-sm"
+              >
+                <option value="">Activo</option>
+                <option value="">Inactivo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <!--MODAL DE SALIDA-->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">SALIDA DE PRODUCTOS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="salidaForm">
+            <div class="row">
+              <div class="col-md-6">
+                <label >Producto *</label>
+                <select
+                    class="form-control form-control-sm"
+                    formControlName="producto_salida">
+                  <option value="">SELECCIONE UNA OPCION</option>
+                  <option value="">pepito</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label >Cantidad *</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="cantidad_salida"
+                >
+              </div>
+              <div class="col-md-2">
+                <label >Stock *</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="stock_salida"
+                >
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label >Seccion *</label>
+                  <select
+                      class="form-control form-control-sm"
+                      formControlName="seccion_salida">
+
+                    <option value="">SELECCIONE UNA OPCION</option>
+                    <option value="Salud madre y mujer">SEDE PRINCIPAL</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label >Motivo de salida *</label>
+                  <select
+                      class="form-control form-control-sm"
+                      formControlName="motivo_salida">
+
+                  <option value="">SELECCIONE UNA OPCION</option>
+                  <option value="Gasto interno">Salida por gasto interno</option>
+                  <option value="Vencimiento">Salida por Vencimiento</option>
+                  <option value="Prestamo">Salida por Prestamo</option>
+                  <option value="Temporal">Salida Temporal</option>
+                </select>
+                </div>
+              </div>
+              <div class="row mt-1">
+                <div class="col-md-12">
+                  <label>Comentarios *</label>
+                    <textarea
+                      class="form-control"
+                      formControlName="comentarios_salida"
+                    ></textarea>
+                  </div>
+              </div>
+               </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
+          <button type="button" class="btn btn-success">GUARDAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal entrada -->
+<div class="modal fade" id="entrada" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">ENTRADA PRODUCTO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="entradaForm">
+          <div class="row">
+            <div class="col-md-6">
+              <label >Producto *</label>
+              <select
+                  class="form-control form-control-sm"
+                  formControlName="producto_entrada">
+                <option value="">SELECCIONE UNA OPCION</option>
+                <option value="1">nn</option>
+
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label >Cantidad *</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                formControlName="cantidad_entrada"
+              >
+            </div>
+            <div class="col-md-2">
+              <label >Stock *</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                formControlName="stock_entrada"
+              >
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label >Seccion *</label>
+                <select
+                    class="form-control form-control-sm"
+                    formControlName="seccion_entrada">
+
+                  <option value="">SELECCIONE UNA OPCION</option>
+                  <option value="Salud madre y mujer">SEDE PRINCIPAL</option>
+
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label >Motivo de ingreso *</label>
+                <select
+                    class="form-control form-control-sm"
+                    formControlName="motivo_entrada">
+
+                <option value="">SELECCIONE UNA OPCION</option>
+                <option value="Compra">Compra de Insumos</option>
+                <option value="Obsequio">Obsequio Empresarial</option>
+                <option value="Temporal">Ingreso Temporal</option>
+              </select>
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col-md-12">
+                <label>Comentarios *</label>
+                  <textarea
+                    class="form-control"
+                    formControlName="comentarios_entrada"
+                  ></textarea>
+                </div>
+            </div>
+             </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-success">GUARDAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal agregar producto-->
+<div class="modal fade" id="agregarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">AGREGAR PRODUCTO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="productoForm">
+          <div class="row mt-1">
+            <div class="col-md-6">
+              <label>Categoria *</label>
+              <select
+                class="form-control form-control-sm text-uppercase"
+                formControlName="categoria_productos"
+              >
+              <option value="">Seleccione una opcion</option>
+              <option value="1">una opcion</option>
+
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>Nombre *</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="nombre_productos"
+              >
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-6">
+              <label>Codigo *</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                formControlName="codigo_productos"
+              >
+            </div>
+            <div class="col-md-6">
+              <label>Codigo de Barras</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                formControlName="barras_productos"
+              >
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-6">
+              <label>Unidad Medida *</label>
+              <select
+                class="form-control form-control-sm text-uppercase"
+                aria-label="Default select example"
+                formControlName="medida_productos"
+              >
+                <option value="">Seleccione una opcion</option>
+                <option value="Unidades">unidades</option>
+
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>Cantidad *</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                formControlName="cantidad_productos"
+              >
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-6">
+              <label>Precio por Unidad *</label>
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                formControlName="precio_productos"
+              >
+            </div>
+            <div class="col-md-6">
+              <label>Moneda *</label>
+              <select
+                class="form-control form-control-sm text-uppercase"
+                aria-label="Default select example"
+                formControlName="moneda_productos"
+              >
+                <option value="PEN">Soles (/s) *</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-12">
+              <label>Descripción</label>
+                <textarea
+                  class="form-control"
+                  formControlName="descripcion_productos"
+                ></textarea>
+              </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-success">GUARDAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal CONSULTA -->
+<div class="modal fade" id="consulta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">CONSULTA PRODUCTO</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-success">GUARDAR</button>
+      </div>
+    </div>
+  </div>
+</div>

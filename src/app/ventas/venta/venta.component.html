@@ -1,0 +1,193 @@
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * -->
+<!-- * * * * * * * * * * * JERSON GALVEZ ENSUNCHO * * * * * * * * * * * -->
+<!-- ******* * * * * * * * PROYECTO INVENTSOFT * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+
+<div class="min-height-300 bg-default position-absolute w-100"></div>
+<app-menu></app-menu>
+  <main class="main-content position-relative border-radius-lg">
+    <div class="container-fluid py-6">
+      <div class="row ">
+        <div class="card">
+         <br>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                    <li class="breadcrumb-item text-sm"><a class="opacity-5 " href="javascript:;">InventSoft</a></li>
+                    <li class="breadcrumb-item text-sm  active" aria-current="page">Venta</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="card card-pricing">
+                    <div
+                      class="card-header bg-gradient-dark text-center pt-4 pb-5 position-relative"
+                    >
+                      <div class="z-index-1 position-relative">
+                        <h6 class="text-white">TOTAL VENTA </h6>
+                        <h2 class="text-white mt-2 mb-0" id="ventaa">
+                          <small id="compracero" class="text-white">$0 </small>
+                          <small class="total-compra text-white" id="total-compra" hidden></small>
+                        </h2>
+                        <h6 class="text-white">TOTAL DEVOLVER</h6>
+                      <div id="volver">
+                        <h3 class="text-white" id="devolver">$0</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="position-relative mt-n5" style="height: 50px;">
+                    <div class="position-absolute w-100">
+                      <svg class="waves waves-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                          <path id="card-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+                        </defs>
+                        <g class="moving-waves">
+                          <use xlink:href="#card-wave" x="48" y="-1" fill="rgba(255,255,255,0.30"></use>
+                          <use xlink:href="#card-wave" x="48" y="3" fill="rgba(255,255,255,0.35)"></use>
+                          <use xlink:href="#card-wave" x="48" y="5" fill="rgba(255,255,255,0.25)"></use>
+                          <use xlink:href="#card-wave" x="48" y="8" fill="rgba(255,255,255,0.20)"></use>
+                          <use xlink:href="#card-wave" x="48" y="13" fill="rgba(255,255,255,0.15)"></use>
+                          <use xlink:href="#card-wave" x="48" y="16" fill="rgba(255,255,255,0.99)"></use>
+                        </g>
+                      </svg>
+                    </div>
+                    <br>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label>Documento</label>
+                          <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                          <label>Tipo Pago</label>
+                          <select
+                            class="form-control"
+                          >
+                            <option value="EFECTIVO">EFECTIVO</option>
+                            <option value="NEQUI">NEQUI</option>
+                            <option value="BANCOLOMB">BANCOLOMBIA</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <label>Sede</label>
+                          <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                          <label>No Venta</label>
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="col-md-6">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="fcustomCheck1">
+                            <label>
+                              Devolución
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              name="checkrecibocaja"
+                              id="checkrecibocaja"
+                            >
+                              <label>Recibo de Caja?</label>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label>Fecha</label>
+                            <input type="text" class="form-control">
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              </div>
+              <div class="col-md-7 offset-md-1">
+                <div class="row">
+                  <div class="col-md-3">
+                    <label>Codigo de Barras</label>
+                    <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-3">
+                    <label>Precio</label>
+                    <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-3">
+                    <label>Nombre</label>
+                    <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-2">
+                    <label>%</label>
+                    <input type="text" class="form-control form-control-sm">
+                  </div>
+                  <div class="col-md-1 mt-4">
+                    <button class="btn btn-danger btn-xs mt-1"> <i class="fas fa-search"></i> </button>
+                  </div>
+                </div>
+                <hr class="text-success" class="height: 10px !important;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <ul class="list-group list-group-flush list-group-no-gutters mb-5">
+                      <li class="list-group-item">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0">
+                            <img class="avatar avatar-xl avatar-4x3" src="https://htmlstream.com/preview/front-v4.2/html/assets/img/320x320/img2.jpg" alt="Image Description">
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <div class="row">
+                              <div class="col-sm-6 mb-3 mb-sm-0">
+                                <h5><a class="text-dark" href="#">Originals national backpack</a></h5>
+
+                                <div class="d-block d-sm-none">
+                                  <h5 class="mb-1">$29.99</h5>
+                                </div>
+
+                                <div class="d-grid gap-1">
+                                  <div class="text-body">
+                                    <span class="small">Gender:</span>
+                                    <span class="fw-semi-bold small">Men</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="row">
+                                  <div class="col-auto">
+                                  <input type="number" class="form-control">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-4 col-sm-2 d-none d-sm-inline-block text-right">
+                                <div class="row">
+                                  <span class="h5 d-block mb-1">$29.99</span>
+                                  <a class="link-sm link-secondary small" href="javascript:;">
+                                    <i class="fas fa-trash me-1 text-danger"></i> Eliminar
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ </main>
+
+
