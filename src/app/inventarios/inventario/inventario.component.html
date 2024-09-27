@@ -81,7 +81,9 @@
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">STOCK</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+
+                </tbody>
               </table>
             </div>
           </div>
@@ -109,6 +111,14 @@
                   <option value="">SELECCIONE UNA OPCION</option>
                   <option value="">pepito</option>
                 </select>
+                <div
+                    class="error"
+                    *ngIf="productoControl.invalid && (productoControl.touched || productoControl.dirty)"
+                 >
+                   <p class="text-danger text-xs font-weight-bold">
+                     El campo es obligatorio
+                   </p>
+                 </div>
               </div>
               <div class="col-md-4">
                 <label >Cantidad *</label>
@@ -117,6 +127,14 @@
                   class="form-control form-control-sm"
                   formControlName="cantidad_salida"
                 >
+                <div
+                    class="error"
+                    *ngIf="cantidadControl.invalid && (cantidadControl.touched || cantidadControl.dirty)"
+               >
+                 <p class="text-danger text-xs font-weight-bold">
+                   El campo es obligatorio
+                 </p>
+               </div>
               </div>
               <div class="col-md-2">
                 <label >Stock *</label>
@@ -125,6 +143,14 @@
                   class="form-control form-control-sm"
                   formControlName="stock_salida"
                 >
+                <div
+                    class="error"
+                    *ngIf="stockControl.invalid && (stockControl.touched || stockControl.dirty)"
+               >
+                 <p class="text-danger text-xs font-weight-bold">
+                   El campo es obligatorio
+                 </p>
+               </div>
               </div>
             </div>
               <div class="row">
@@ -137,6 +163,14 @@
                     <option value="">SELECCIONE UNA OPCION</option>
                     <option value="Salud madre y mujer">SEDE PRINCIPAL</option>
                   </select>
+                  <div
+                      class="error"
+                      *ngIf="seccionControl.invalid && (seccionControl.touched || seccionControl.dirty)"
+                 >
+                   <p class="text-danger text-xs font-weight-bold">
+                     El campo es obligatorio
+                   </p>
+                 </div>
                 </div>
                 <div class="col-md-6">
                   <label >Motivo de salida *</label>
@@ -150,6 +184,14 @@
                   <option value="Prestamo">Salida por Prestamo</option>
                   <option value="Temporal">Salida Temporal</option>
                 </select>
+                <div
+                    class="error"
+                    *ngIf="motivoControl.invalid && (motivoControl.touched || motivoControl.dirty)"
+               >
+                 <p class="text-danger text-xs font-weight-bold">
+                   El campo es obligatorio
+                 </p>
+               </div>
                 </div>
               </div>
               <div class="row mt-1">
@@ -159,6 +201,14 @@
                       class="form-control"
                       formControlName="comentarios_salida"
                     ></textarea>
+                    <div
+                        class="error"
+                        *ngIf="comentarioControl.invalid && (comentarioControl.touched || comentarioControl.dirty)"
+                   >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                   </div>
                   </div>
               </div>
                </form>

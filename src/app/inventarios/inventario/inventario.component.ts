@@ -1,22 +1,30 @@
 import { InventarioService } from './../services/inventario.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MenuComponent } from "../../componentes/menu/menu.component";
-
+import { CommonModule } from '@angular/common';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-inventario',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    MenuComponent
+    MenuComponent,
+    CommonModule,
+    ToastModule,
+    RouterOutlet
 ],
   templateUrl: './inventario.component.html',
+  providers: [MessageService],
   styleUrl: './inventario.component.css'
 })
 export class InventarioComponent implements OnInit {
 
   constructor(
-    private InventarioServices: InventarioService
+    private InventarioServices: InventarioService,
+    private messageService: MessageService,
   ){
 
   }
@@ -26,12 +34,12 @@ export class InventarioComponent implements OnInit {
   }
 
   salidaForm = new FormGroup ({
-    producto_salida: new FormControl(''),
-    cantidad_salida: new FormControl(''),
-    stock_salida: new FormControl(''),
-    seccion_salida: new FormControl(''),
-    motivo_salida: new FormControl(''),
-    comentarios_salida: new FormControl(''),
+    producto_salida: new FormControl('',[Validators.required]),
+    cantidad_salida: new FormControl('',[Validators.required]),
+    stock_salida: new FormControl('',[Validators.required]),
+    seccion_salida: new FormControl('',[Validators.required]),
+    motivo_salida: new FormControl('',[Validators.required]),
+    comentarios_salida: new FormControl('',[Validators.required]),
   });
 
   entradaForm = new FormGroup ({
@@ -55,8 +63,37 @@ export class InventarioComponent implements OnInit {
     descripcion_productos: new FormControl(''),
   });
 
+  get productoControl(): FormControl {
+    return this.salidaForm.get('producto_salida') as FormControl;
+  }
 
+  get cantidadControl(): FormControl {
+    return this.salidaForm.get('cantidad_salida') as FormControl;
+  }
 
+  get stockControl(): FormControl {
+    return this.salidaForm.get('stock_salida') as FormControl;
+  }
 
+  get seccionControl(): FormControl {
+    return this.salidaForm.get('seccion_salida') as FormControl;
+  }
+
+  get motivoControl(): FormControl {
+    return this.salidaForm.get('motivo_salida') as FormControl;
+  }
+
+  get comentarioControl(): FormControl {
+    return this.salidaForm.get('comentarios_salida') as FormControl;
+  }
+
+    getProducto: any [] = [];
+    getProductos(){
+      this.InventarioServices
+          .getProductos()
+          .subscribe((response: any) =>{
+          this.getProducto = response;
+         })
+ }
 
 }
