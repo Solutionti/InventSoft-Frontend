@@ -55,24 +55,6 @@
               <table class="table table-striped table-hover">
                 <thead style="background-color: black !important;">
                   <tr>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12"></th><!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            ...
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Understood</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">IMAGEN</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CODIGO</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">NOMBRE</th>
@@ -82,7 +64,18 @@
                   </tr>
                 </thead>
                 <tbody>
-
+                  <tr *ngFor="let product of getProducto">
+                    <td class="text-xs text-uppercase">
+                      <div class="text-center">
+                        <img [src]="product.url_imagen" class="avatar avatar-sm avatar-circle">
+                      </div>
+                    </td>
+                    <td class="text-xs text-uppercase">  {{ product.codigo }}  </td>
+                    <td class="text-xs text-uppercase">  {{ product.nombre }}  </td>
+                    <td class="text-xs text-uppercase">  {{ product.categoria  }}  </td>
+                    <td class="text-xs text-uppercase">  {{ product.precio }}  </td>
+                    <td class="text-xs text-uppercase">  {{ product.stock }}  </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -105,52 +98,52 @@
             <div class="row">
               <div class="col-md-6">
                 <label >Producto *</label>
-                <select
-                    class="form-control form-control-sm"
-                    formControlName="producto_salida">
-                  <option value="">SELECCIONE UNA OPCION</option>
-                  <option value="">pepito</option>
-                </select>
-                <div
-                    class="error"
-                    *ngIf="productoControl.invalid && (productoControl.touched || productoControl.dirty)"
-                 >
-                   <p class="text-danger text-xs font-weight-bold">
-                     El campo es obligatorio
-                   </p>
-                 </div>
+                  <select
+                      class="form-control form-control-sm"
+                      formControlName="producto_salida">
+                    <option value="">SELECCIONE UNA OPCION</option>
+                    <option value="">pepito</option>
+                  </select>
+                      <div
+                        class="error"
+                        *ngIf="productoControl.invalid && (productoControl.touched || productoControl.dirty)"
+                      >
+                        <p class="text-danger text-xs font-weight-bold">
+                          El campo es obligatorio
+                        </p>
+                      </div>
               </div>
               <div class="col-md-4">
                 <label >Cantidad *</label>
-                <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  formControlName="cantidad_salida"
-                >
-                <div
-                    class="error"
-                    *ngIf="cantidadControl.invalid && (cantidadControl.touched || cantidadControl.dirty)"
-               >
-                 <p class="text-danger text-xs font-weight-bold">
-                   El campo es obligatorio
-                 </p>
-               </div>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm"
+                    formControlName="cantidad_salida"
+                  >
+                    <div
+                      class="error"
+                      *ngIf="cantidadControl.invalid && (cantidadControl.touched || cantidadControl.dirty)"
+                    >
+                      <p class="text-danger text-xs font-weight-bold">
+                        El campo es obligatorio
+                      </p>
+                    </div>
               </div>
               <div class="col-md-2">
                 <label >Stock *</label>
-                <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  formControlName="stock_salida"
-                >
-                <div
-                    class="error"
-                    *ngIf="stockControl.invalid && (stockControl.touched || stockControl.dirty)"
-               >
-                 <p class="text-danger text-xs font-weight-bold">
-                   El campo es obligatorio
-                 </p>
-               </div>
+                  <input
+                    type="number"
+                    class="form-control form-control-sm"
+                    formControlName="stock_salida"
+                  >
+                    <div
+                      class="error"
+                      *ngIf="stockControl.invalid && (stockControl.touched || stockControl.dirty)"
+                    >
+                      <p class="text-danger text-xs font-weight-bold">
+                        El campo es obligatorio
+                      </p>
+                    </div>
               </div>
             </div>
               <div class="row">
@@ -163,14 +156,14 @@
                     <option value="">SELECCIONE UNA OPCION</option>
                     <option value="Salud madre y mujer">SEDE PRINCIPAL</option>
                   </select>
-                  <div
-                      class="error"
-                      *ngIf="seccionControl.invalid && (seccionControl.touched || seccionControl.dirty)"
-                 >
-                   <p class="text-danger text-xs font-weight-bold">
-                     El campo es obligatorio
-                   </p>
-                 </div>
+                      <div
+                         class="error"
+                        *ngIf="seccionControl.invalid && (seccionControl.touched || seccionControl.dirty)"
+                      >
+                        <p class="text-danger text-xs font-weight-bold">
+                          El campo es obligatorio
+                        </p>
+                      </div>
                 </div>
                 <div class="col-md-6">
                   <label >Motivo de salida *</label>
@@ -184,14 +177,14 @@
                   <option value="Prestamo">Salida por Prestamo</option>
                   <option value="Temporal">Salida Temporal</option>
                 </select>
-                <div
-                    class="error"
-                    *ngIf="motivoControl.invalid && (motivoControl.touched || motivoControl.dirty)"
-               >
-                 <p class="text-danger text-xs font-weight-bold">
-                   El campo es obligatorio
-                 </p>
-               </div>
+                    <div
+                        class="error"
+                        *ngIf="motivoControl.invalid && (motivoControl.touched || motivoControl.dirty)"
+                    >
+                      <p class="text-danger text-xs font-weight-bold">
+                        El campo es obligatorio
+                      </p>
+                    </div>
                 </div>
               </div>
               <div class="row mt-1">
@@ -201,15 +194,15 @@
                       class="form-control"
                       formControlName="comentarios_salida"
                     ></textarea>
-                    <div
-                        class="error"
-                        *ngIf="comentarioControl.invalid && (comentarioControl.touched || comentarioControl.dirty)"
-                   >
-                     <p class="text-danger text-xs font-weight-bold">
-                       El campo es obligatorio
-                     </p>
-                   </div>
-                  </div>
+                        <div
+                          class="error"
+                          *ngIf="comentarioControl.invalid && (comentarioControl.touched || comentarioControl.dirty)"
+                        >
+                          <p class="text-danger text-xs font-weight-bold">
+                            El campo es obligatorio
+                          </p>
+                        </div>
+                </div>
               </div>
                </form>
         </div>
@@ -233,21 +226,37 @@
           <div class="row">
             <div class="col-md-6">
               <label >Producto *</label>
-              <select
+                <select
                   class="form-control form-control-sm"
                   formControlName="producto_entrada">
                 <option value="">SELECCIONE UNA OPCION</option>
                 <option value="1">nn</option>
 
-              </select>
+                </select>
+                    <div
+                      class="error"
+                      *ngIf="producto_entrada.invalid && (producto_entrada.touched || producto_entrada.dirty)"
+                    >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                  </div>
             </div>
             <div class="col-md-4">
               <label >Cantidad *</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                formControlName="cantidad_entrada"
-              >
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="cantidad_entrada"
+                >
+                  <div
+                    class="error"
+                    *ngIf="cantidad_entrada.invalid && (cantidad_entrada.touched || cantidad_entrada.dirty)"
+                  >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
             </div>
             <div class="col-md-2">
               <label >Stock *</label>
@@ -256,31 +265,55 @@
                 class="form-control form-control-sm"
                 formControlName="stock_entrada"
               >
+                <div
+                  class="error"
+                  *ngIf="stock_entrada.invalid && (stock_entrada.touched || stock_entrada.dirty)"
+                >
+                  <p class="text-danger text-xs font-weight-bold">
+                    El campo es obligatorio
+                  </p>
+                </div>
             </div>
           </div>
             <div class="row">
               <div class="col-md-6">
                 <label >Seccion *</label>
-                <select
+                  <select
                     class="form-control form-control-sm"
                     formControlName="seccion_entrada">
 
                   <option value="">SELECCIONE UNA OPCION</option>
                   <option value="Salud madre y mujer">SEDE PRINCIPAL</option>
 
-                </select>
+                  </select>
+                    <div
+                      class="error"
+                      *ngIf="seccion_entrada.invalid && (seccion_entrada.touched || seccion_entrada.dirty)"
+                    >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                   </div>
               </div>
               <div class="col-md-6">
                 <label >Motivo de ingreso *</label>
-                <select
+                  <select
                     class="form-control form-control-sm"
                     formControlName="motivo_entrada">
 
-                <option value="">SELECCIONE UNA OPCION</option>
-                <option value="Compra">Compra de Insumos</option>
-                <option value="Obsequio">Obsequio Empresarial</option>
-                <option value="Temporal">Ingreso Temporal</option>
-              </select>
+                  <option value="">SELECCIONE UNA OPCION</option>
+                  <option value="Compra">Compra de Insumos</option>
+                  <option value="Obsequio">Obsequio Empresarial</option>
+                  <option value="Temporal">Ingreso Temporal</option>
+                </select>
+                    <div
+                      class="error"
+                      *ngIf="motivo_entrada.invalid && (motivo_entrada.touched || motivo_entrada.dirty)"
+                    >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                   </div>
               </div>
             </div>
             <div class="row mt-1">
@@ -290,9 +323,17 @@
                     class="form-control"
                     formControlName="comentarios_entrada"
                   ></textarea>
-                </div>
+                    <div
+                      class="error"
+                      *ngIf="comentarios_entrada.invalid && (comentarios_entrada.touched || comentarios_entrada.dirty)"
+                    >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                    </div>
+              </div>
             </div>
-             </form>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
@@ -314,82 +355,136 @@
           <div class="row mt-1">
             <div class="col-md-6">
               <label>Categoria *</label>
-              <select
-                class="form-control form-control-sm text-uppercase"
-                formControlName="categoria_productos"
-              >
-              <option value="">Seleccione una opcion</option>
-              <option value="1">una opcion</option>
-
-              </select>
+                <select
+                  class="form-control form-control-sm text-uppercase"
+                  formControlName="categoria_productos"
+                >
+                  <option value="">Seleccione una opcion</option>
+                  <option value="1">una opcion</option>
+                </select>
+                    <div
+                      class="error"
+                      *ngIf="categoria_productos.invalid && (categoria_productos.touched || categoria_productos.dirty)"
+                    >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                    </div>
             </div>
             <div class="col-md-6">
               <label>Nombre *</label>
-              <input
-                type="text"
-                class="form-control form-control-sm"
-                formControlName="nombre_productos"
-              >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="nombre_productos"
+                >
+                  <div
+                    class="error"
+                    *ngIf="nombre_productos.invalid && (nombre_productos.touched || nombre_productos.dirty)"
+                  >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
             </div>
           </div>
           <div class="row mt-1">
             <div class="col-md-6">
               <label>Codigo *</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                formControlName="codigo_productos"
-              >
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="codigo_productos"
+                >
+                  <div
+                    class="error"
+                    *ngIf="codigo_productos.invalid && (codigo_productos.touched || codigo_productos.dirty)"
+                   >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
             </div>
             <div class="col-md-6">
               <label>Codigo de Barras</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                formControlName="barras_productos"
-              >
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="barras_productos"
+                >
             </div>
           </div>
           <div class="row mt-1">
             <div class="col-md-6">
               <label>Unidad Medida *</label>
-              <select
-                class="form-control form-control-sm text-uppercase"
-                aria-label="Default select example"
-                formControlName="medida_productos"
-              >
-                <option value="">Seleccione una opcion</option>
-                <option value="Unidades">unidades</option>
-
-              </select>
+                <select
+                  class="form-control form-control-sm text-uppercase"
+                  aria-label="Default select example"
+                  formControlName="medida_productos"
+                >
+                  <option value="">Seleccione una opcion</option>
+                  <option value="Unidades">unidades</option>
+                </select>
+                    <div
+                      class="error"
+                      *ngIf="medida_productos.invalid && (medida_productos.touched || medida_productos.dirty)"
+                    >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                    </div>
             </div>
             <div class="col-md-6">
               <label>Cantidad *</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                formControlName="cantidad_productos"
-              >
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="cantidad_productos"
+                >
+                  <div
+                    class="error"
+                    *ngIf="cantidad_productos.invalid && (cantidad_productos.touched || cantidad_productos.dirty)"
+                  >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
             </div>
           </div>
           <div class="row mt-1">
             <div class="col-md-6">
               <label>Precio por Unidad *</label>
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                formControlName="precio_productos"
-              >
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="precio_productos"
+                >
+                  <div
+                    class="error"
+                    *ngIf="precio_productos.invalid && (precio_productos.touched || precio_productos.dirty)"
+                  >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
             </div>
             <div class="col-md-6">
               <label>Moneda *</label>
-              <select
-                class="form-control form-control-sm text-uppercase"
-                aria-label="Default select example"
-                formControlName="moneda_productos"
-              >
-                <option value="PEN">Soles (/s) *</option>
-              </select>
+                <select
+                  class="form-control form-control-sm text-uppercase"
+                  aria-label="Default select example"
+                  formControlName="moneda_productos"
+                >
+                  <option value="PEN">Soles (/s) *</option>
+                </select>
+                    <div
+                      class="error"
+                      *ngIf="moneda_productos.invalid && (moneda_productos.touched || moneda_productos.dirty)"
+                   >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                    </div>
             </div>
           </div>
           <div class="row mt-1">
@@ -399,7 +494,7 @@
                   class="form-control"
                   formControlName="descripcion_productos"
                 ></textarea>
-              </div>
+            </div>
           </div>
         </form>
       </div>
