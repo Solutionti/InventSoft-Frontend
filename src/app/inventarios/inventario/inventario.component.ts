@@ -17,6 +17,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './inventario.component.css'
 })
 export class InventarioComponent implements OnInit {
+  messageService: any;
 
   constructor(
     private InventarioServices: InventarioService,
@@ -27,6 +28,7 @@ export class InventarioComponent implements OnInit {
   ngOnInit(): void {
 
     this.getProductos();
+    this.getCategorias();
 
   }
 
@@ -144,5 +146,57 @@ export class InventarioComponent implements OnInit {
           this.getProducto = response;
          })
  }
+   getCategoria: any [] = [];
+   getCategorias(){
+      this.InventarioServices
+          .getCategorias()
+          .subscribe((response: any) => {
+          this.getCategoria = response;
+          })
+   }
 
+   postAgregarProductos(){
+    let crear : any =[
+      {
+      categoria: this.productoForm.get("categoria_productos")?.value,
+      nombre: this.productoForm.get("nombre_productos")?.value,
+      codigo: this.productoForm.get("codigo_productos")?.value,
+      codigo_barras: this.productoForm.get("barras_productos")?.value,
+      medida: this.productoForm.get("medida_productos")?.value,
+      cantidad: this.productoForm.get("cantidad_productos")?.value,
+      precio: this.productoForm.get("precio_productos")?.value,
+      moneda: this.productoForm.get("moneda_productos")?.value,
+      descripcion: this.productoForm.get("descripcion_productos")?.value,
+    }
+  ];
+  this.InventarioServices
+      .postAgregarProductos(crear)
+      .subscribe((response: any)=> {
+        if(response.status == 200){
+          this.showSuccess(response.mesagge);
+          this.productoForm.reset();
+        }
+        else{
+          this.showError(response.mesagge);
+        }
+      });
+   }
+
+   showError(message: string) {
+    this.messageService.add(
+      {
+        severity: 'error',
+        summary: 'inventsoft Aviso',
+        detail: message
+      }
+    );
+  }
+
+  showSuccess(message: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'inventsoft Aviso',
+      detail: message
+    });
+  }
 }

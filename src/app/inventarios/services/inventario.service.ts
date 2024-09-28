@@ -18,4 +18,26 @@ export class InventarioService {
      return this.http.get(url);
     }
 
+    getCategorias() {
+      const url =  `${environment.apiInventsoft}getCategorias`;
+
+      return this.http.get(url);
+     }
+
+     postAgregarProductos(datos: any){
+      const url = `${environment.apiInventsoft}postAgregarProductos`;
+
+      return this.http.post(url, {
+        categoria: datos[0].categoria,
+        nombre: datos[0].nombre,
+        codigo: datos[0].codigo,
+        codigo_barras: datos[0].codigo_barras,
+        medida: datos[0].medida,
+        cantidad: datos[0].cantidad,
+        precio: datos[0].precio,
+        moneda: datos[0].moneda,
+        descripcion: datos[0].descripcion
+       });
+     }
+
 }

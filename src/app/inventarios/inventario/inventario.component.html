@@ -360,7 +360,12 @@
                   formControlName="categoria_productos"
                 >
                   <option value="">Seleccione una opcion</option>
-                  <option value="1">una opcion</option>
+                  <option
+                    *ngFor="let categoria of getCategoria"
+                    [value]="categoria.codigo_categoria"
+                  >
+                    {{ categoria.nombre }}
+                  </option>
                 </select>
                     <div
                       class="error"
@@ -500,7 +505,12 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
-        <button type="button" class="btn btn-success">GUARDAR</button>
+        <button
+          type="button"
+          class="btn btn-success"
+          [disabled]="productoForm.invalid"
+          (click)="postAgregarProductos()"
+        >GUARDAR</button>
       </div>
     </div>
   </div>
