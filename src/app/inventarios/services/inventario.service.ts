@@ -29,14 +29,19 @@ export class InventarioService {
 
       return this.http.post(url, {
         categoria: datos[0].categoria,
-        nombre: datos[0].nombre,
+        url_imagen: datos[0].url_imagen,
         codigo: datos[0].codigo,
         codigo_barras: datos[0].codigo_barras,
+        nombre: datos[0].nombre,
         medida: datos[0].medida,
-        cantidad: datos[0].cantidad,
         precio: datos[0].precio,
+        costo_proveedor: datos[0].costo_proveedor,
         moneda: datos[0].moneda,
-        descripcion: datos[0].descripcion
+        descripcion: datos[0].descripcion,
+        stock: datos[0].stock,
+        cantidad: datos[0].cantidad,
+        producto_venta: datos[0].producto_venta,
+        producto_ecommerce: datos[0].producto_ecommerce,
        });
      }
 

@@ -493,6 +493,95 @@
             </div>
           </div>
           <div class="row mt-1">
+            <div class="col-md-6">
+              <label>Imagen</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="imagen_productos"
+                >
+                <div
+                      class="error"
+                      *ngIf="imagen_productos.invalid && (imagen_productos.touched || imagen_productos.dirty)"
+                   >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                    </div>
+            </div>
+            <div class="col-md-6">
+              <label>Costo proveedor *</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="costo_productos"
+                >
+                    <div
+                      class="error"
+                      *ngIf="costo_productos.invalid && (costo_productos.touched || costo_productos.dirty)"
+                   >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                    </div>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-6">
+              <label>Stock *</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="stock_productos"
+                >
+                  <div
+                    class="error"
+                    *ngIf="stock_productos.invalid && (stock_productos.touched || stock_productos.dirty)"
+                  >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
+            </div>
+            <div class="col-md-6">
+              <label>Venta Producto *</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="venta_productos"
+                >
+                    <div
+                      class="error"
+                      *ngIf="venta_productos.invalid && (venta_productos.touched || venta_productos.dirty)"
+                   >
+                     <p class="text-danger text-xs font-weight-bold">
+                       El campo es obligatorio
+                     </p>
+                    </div>
+            </div>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-6">
+              <label>Ecommerce Prodcuto</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="ecommerce_productos"
+                >
+                  <div
+                    class="error"
+                    *ngIf="ecommerce_productos.invalid && (ecommerce_productos.touched || ecommerce_productos.dirty)"
+                  >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
+            </div>
+            <div class="col-md-6">
+              <label></label>
+            </div>
+          </div>
+          <div class="row mt-1">
             <div class="col-md-12">
               <label>Descripción</label>
                 <textarea
