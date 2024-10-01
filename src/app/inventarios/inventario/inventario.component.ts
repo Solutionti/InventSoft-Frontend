@@ -53,7 +53,6 @@ export class InventarioComponent implements OnInit {
   productoForm: FormGroup = new FormGroup ({
     categoria_productos: new FormControl('',[Validators.required]),
     nombre_productos: new FormControl('',[Validators.required]),
-    codigo_productos: new FormControl('',[Validators.required]),
     barras_productos: new FormControl(''),
     medida_productos: new FormControl('',[Validators.required]),
     cantidad_productos: new FormControl('',[Validators.required]),
@@ -62,8 +61,7 @@ export class InventarioComponent implements OnInit {
     imagen_productos: new FormControl('',[Validators.required]),
     costo_productos: new FormControl('',[Validators.required]),
     stock_productos: new FormControl('',[Validators.required]),
-    venta_productos: new FormControl('',[Validators.required]),
-    ecommerce_productos: new FormControl('',[Validators.required]),
+    ecommerce_productos: new FormControl('',),
     descripcion_productos: new FormControl(''),
   });
 
@@ -159,10 +157,6 @@ export class InventarioComponent implements OnInit {
     return this.productoForm.get('venta_productos') as FormControl;
   }
 
-  get ecommerce_productos(): FormControl {
-    return this.productoForm.get('ecommerce_productos') as FormControl;
-  }
-
     getProducto: any [] = [];
     getProductos(){
       this.InventarioServices
@@ -185,7 +179,6 @@ export class InventarioComponent implements OnInit {
       {
       categoria: this.productoForm.get("categoria_productos")?.value,
       url_imagen: this.productoForm.get("imagen_productos")?.value,
-      codigo: this.productoForm.get("codigo_productos")?.value,
       codigo_barras: this.productoForm.get("barras_productos")?.value,
       nombre: this.productoForm.get("nombre_productos")?.value,
       medida: this.productoForm.get("medida_productos")?.value,
@@ -195,7 +188,6 @@ export class InventarioComponent implements OnInit {
       descripcion: this.productoForm.get("descripcion_productos")?.value,
       stock: this.productoForm.get("stock_productos")?.value,
       cantidad: this.productoForm.get("cantidad_productos")?.value,
-      producto_venta: this.productoForm.get("venta_productos")?.value,
       producto_ecommerce: this.productoForm.get("ecommerce_productos")?.value,
     }
   ];

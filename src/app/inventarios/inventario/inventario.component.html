@@ -352,8 +352,18 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="productoForm">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-center">
+                <img
+                  src="https://cilaymar.co/wp-content/uploads/2018/06/DE-TODITO-NATURAL-600x600.jpg"
+                  class="avatar avatar-xl avatar-circle"
+                >
+              </div>
+            </div>
+          </div>
           <div class="row mt-1">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label>Categoria *</label>
                 <select
                   class="form-control form-control-sm text-uppercase"
@@ -376,7 +386,7 @@
                      </p>
                     </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label>Nombre *</label>
                 <input
                   type="text"
@@ -392,25 +402,7 @@
                     </p>
                   </div>
             </div>
-          </div>
-          <div class="row mt-1">
-            <div class="col-md-6">
-              <label>Codigo *</label>
-                <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  formControlName="codigo_productos"
-                >
-                  <div
-                    class="error"
-                    *ngIf="codigo_productos.invalid && (codigo_productos.touched || codigo_productos.dirty)"
-                   >
-                    <p class="text-danger text-xs font-weight-bold">
-                      El campo es obligatorio
-                    </p>
-                  </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label>Codigo de Barras</label>
                 <input
                   type="number"
@@ -420,7 +412,7 @@
             </div>
           </div>
           <div class="row mt-1">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label>Unidad Medida *</label>
                 <select
                   class="form-control form-control-sm text-uppercase"
@@ -439,7 +431,7 @@
                      </p>
                     </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <label>Cantidad *</label>
                 <input
                   type="number"
@@ -455,9 +447,25 @@
                     </p>
                   </div>
             </div>
+            <div class="col-md-3">
+              <label>Stock *</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  formControlName="stock_productos"
+                >
+                  <div
+                    class="error"
+                    *ngIf="stock_productos.invalid && (stock_productos.touched || stock_productos.dirty)"
+                  >
+                    <p class="text-danger text-xs font-weight-bold">
+                      El campo es obligatorio
+                    </p>
+                  </div>
+            </div>
           </div>
           <div class="row mt-1">
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label>Precio por Unidad *</label>
                 <input
                   type="number"
@@ -473,7 +481,7 @@
                     </p>
                   </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label>Moneda *</label>
                 <select
                   class="form-control form-control-sm text-uppercase"
@@ -491,25 +499,7 @@
                      </p>
                     </div>
             </div>
-          </div>
-          <div class="row mt-1">
-            <div class="col-md-6">
-              <label>Imagen</label>
-                <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  formControlName="imagen_productos"
-                >
-                <div
-                      class="error"
-                      *ngIf="imagen_productos.invalid && (imagen_productos.touched || imagen_productos.dirty)"
-                   >
-                     <p class="text-danger text-xs font-weight-bold">
-                       El campo es obligatorio
-                     </p>
-                    </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label>Costo proveedor *</label>
                 <input
                   type="number"
@@ -525,60 +515,36 @@
                      </p>
                     </div>
             </div>
+            <div class="col-md-3">
+              <label>Producto Ecommerce</label>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckChecked"
+                  checked
+                  formControlName="ecommerce_productos"
+                >
+              </div>
+            </div>
           </div>
           <div class="row mt-1">
-            <div class="col-md-6">
-              <label>Stock *</label>
+            <div class="col-md-12">
+              <label>Imagen</label>
                 <input
-                  type="number"
+                  type="file"
                   class="form-control form-control-sm"
-                  formControlName="stock_productos"
+                  formControlName="imagen_productos"
                 >
-                  <div
-                    class="error"
-                    *ngIf="stock_productos.invalid && (stock_productos.touched || stock_productos.dirty)"
-                  >
-                    <p class="text-danger text-xs font-weight-bold">
-                      El campo es obligatorio
-                    </p>
-                  </div>
-            </div>
-            <div class="col-md-6">
-              <label>Venta Producto *</label>
-                <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  formControlName="venta_productos"
-                >
-                    <div
+                <div
                       class="error"
-                      *ngIf="venta_productos.invalid && (venta_productos.touched || venta_productos.dirty)"
+                      *ngIf="imagen_productos.invalid && (imagen_productos.touched || imagen_productos.dirty)"
                    >
                      <p class="text-danger text-xs font-weight-bold">
                        El campo es obligatorio
                      </p>
                     </div>
-            </div>
-          </div>
-          <div class="row mt-1">
-            <div class="col-md-6">
-              <label>Ecommerce Prodcuto</label>
-                <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  formControlName="ecommerce_productos"
-                >
-                  <div
-                    class="error"
-                    *ngIf="ecommerce_productos.invalid && (ecommerce_productos.touched || ecommerce_productos.dirty)"
-                  >
-                    <p class="text-danger text-xs font-weight-bold">
-                      El campo es obligatorio
-                    </p>
-                  </div>
-            </div>
-            <div class="col-md-6">
-              <label></label>
             </div>
           </div>
           <div class="row mt-1">
@@ -593,13 +559,13 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
         <button
           type="button"
           class="btn btn-success"
           [disabled]="productoForm.invalid"
           (click)="postAgregarProductos()"
-        >GUARDAR</button>
+        >Guardar</button>
       </div>
     </div>
   </div>
