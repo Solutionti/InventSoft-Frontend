@@ -4,6 +4,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MenuComponent } from "../../componentes/menu/menu.component";
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-inventario',
   standalone: true,
@@ -11,16 +14,19 @@ import { RouterOutlet } from '@angular/router';
     ReactiveFormsModule,
     MenuComponent,
     CommonModule,
-    RouterOutlet
+    RouterOutlet,
+    ToastModule
 ],
   templateUrl: './inventario.component.html',
-  styleUrl: './inventario.component.css'
+  styleUrl: './inventario.component.css',
+  providers: [ConfirmationService,MessageService]
 })
 export class InventarioComponent implements OnInit {
-  messageService: any;
 
   constructor(
     private InventarioServices: InventarioService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
   ){
 
   }
@@ -44,7 +50,7 @@ export class InventarioComponent implements OnInit {
   entradaForm: FormGroup = new FormGroup ({
     producto_entrada: new FormControl('',[Validators.required]),
     cantidad_entrada: new FormControl('',[Validators.required]),
-    stock_entrada: new FormControl('',[Validators.required]),
+    stock_entrada: new FormControl({value: '', disabled: true},[Validators.required]),
     seccion_entrada: new FormControl('',[Validators.required]),
     motivo_entrada: new FormControl('',[Validators.required]),
     comentarios_entrada: new FormControl('',[Validators.required]),
@@ -161,7 +167,7 @@ export class InventarioComponent implements OnInit {
     getProductos(){
       this.InventarioServices
           .getProductos()
-          .subscribe((response: any) =>{
+          .subscribe((response: any) => {
           this.getProducto = response;
          })
  }
@@ -173,6 +179,20 @@ export class InventarioComponent implements OnInit {
           this.getCategoria = response;
           })
    }
+
+
+   getProductoStock(){
+    let codigo = this.entradaForm.get("producto_entrada")?.value;
+      this.InventarioServices
+          .getProductoStock(codigo)
+          .subscribe((response: any) => {
+            console.log(response);
+            this.entradaForm.patchValue({
+              stock_entrada: response.stock
+            });
+          })
+   }
+
 
    postAgregarProductos(){
     let crear : any =[
@@ -200,6 +220,32 @@ export class InventarioComponent implements OnInit {
         }
         else{
           this.showError(response.mesagge);
+        }
+      });
+   }
+
+
+   entradaKardex(){
+    let crear: any = [
+      {
+      producto_entrada: this.entradaForm.get("producto_entrada")?.value,
+      cantidad_entrada: this.entradaForm.get("cantidad_entrada")?.value,
+      stock_entrada: this.entradaForm.get("stock_entrada")?.value,
+      seccion_entrada: this.entradaForm.get("seccion_entrada")?.value,
+      motivo_entrada: this.entradaForm.get("motivo_entrada")?.value,
+      comentarios_entrada: this.entradaForm.get("comentarios_entrada")?.value,
+      usuario: localStorage.getItem("usuario"),
+    }
+  ];
+  this.InventarioServices
+      .entradaKardex(crear)
+      .subscribe((response: any) =>{
+        if(response.status == 200){
+          this.showSuccess(response.message);
+          //this.entradaForm.reset();
+        }
+        else{
+          this.showError(response.message);
         }
       });
    }

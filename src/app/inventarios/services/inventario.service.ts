@@ -1,7 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { response } from 'express';
 import { environment } from '../../../environments/environmen.development';
+import { HtmlParser } from '@angular/compiler';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +27,12 @@ export class InventarioService {
       return this.http.get(url);
      }
 
+     getProductoStock(codigo: any ) {
+      const url =  `${environment.apiInventsoft}getProductoStock`;
+      let params = new HttpParams().set("codigo", codigo);
+      return this.http.get(url, { params });
+     }
+
      postAgregarProductos(datos: any){
       const url = `${environment.apiInventsoft}postAgregarProductos`;
 
@@ -43,6 +52,20 @@ export class InventarioService {
         producto_venta: datos[0].producto_venta,
         producto_ecommerce: datos[0].producto_ecommerce,
        });
+     }
+
+     entradaKardex(datos: any){
+      const url = `${environment.apiInventsoft}entradaKardex`;
+
+      return this.http.post(url,{
+        producto_entrada: datos[0].producto_entrada,
+        cantidad_entrada: datos[0].cantidad_entrada,
+        stock_entrada: datos[0].stock_entrada,
+        seccion_entrada: datos[0].seccion_entrada,
+        motivo_entrada: datos[0].motivo_entrada,
+        comentarios_entrada: datos[0].comentarios_entrada,
+        usuario: datos[0].usuario,
+      });
      }
 
 }
