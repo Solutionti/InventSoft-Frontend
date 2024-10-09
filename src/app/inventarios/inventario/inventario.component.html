@@ -52,32 +52,56 @@
         <div class="row mt-1">
           <div class="col-md-12">
             <div class="table-responsive">
-              <table class="table table-striped table-hover">
-                <thead style="background-color: black !important;">
+              <p-table
+                  #inventario
+                  [rows]="10"
+                  [value]="getProducto"
+                  [paginator]="true"
+                  [globalFilterFields]="['nombre', 'getProducto.nombre', 'representative.name', 'status']"
+                  [tableStyle]="{ 'min-width': '75rem' }"
+                  [rowHover]="true"
+                  dataKey="id"
+                  currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} entradas"
+                >
+                <ng-template pTemplate="caption">
+                  <div class="flex align-items-center justify-content-between">
+                    <span class="p-input-icon-left">
+                      <i class="pi pi-search"></i>
+                      <input
+                        pInputText
+                        type="text"
+                        class="form-control"
+                        (input)="inventario.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Buscar..."
+                      />
+                    </span>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="header">
                   <tr>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">IMAGEN</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CODIGO</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">NOMBRE</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CATEGORIA</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">VALOR</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">STOCK</th>
+                    <th class=" text-white text-xs bg-default">IMAGEN</th>
+                    <th class=" text-white text-xs bg-default">CODIGO</th>
+                    <th class=" text-white text-xs bg-default">NOMBRE</th>
+                    <th class=" text-white text-xs bg-default">CATEGORIA</th>
+                    <th class=" text-white text-xs bg-default">VALOR</th>
+                    <th class=" text-white text-xs bg-default">STOCK</th>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let product of getProducto">
+                </ng-template>
+                <ng-template pTemplate="body" let-getProducto>
+                  <tr>
                     <td class="text-xs text-uppercase">
                       <div class="text-center">
-                        <img [src]="product.url_imagen" class="avatar avatar-sm avatar-circle">
+                        <img [src]="getProducto.url_imagen" class="avatar avatar-sm avatar-circle">
                       </div>
                     </td>
-                    <td class="text-xs text-uppercase">  {{ product.codigo }}  </td>
-                    <td class="text-xs text-uppercase">  {{ product.nombre }}  </td>
-                    <td class="text-xs text-uppercase">  {{ product.categoria  }}  </td>
-                    <td class="text-xs text-uppercase">  {{ product.precio }}  </td>
-                    <td class="text-xs text-uppercase">  {{ product.stock }}  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.codigo }}  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.nombre }}  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.categoria  }}  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.precio }}  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.stock }}  </td>
                   </tr>
-                </tbody>
-              </table>
+                </ng-template>
+               </p-table>
             </div>
           </div>
         </div>
@@ -100,9 +124,14 @@
                 <label >Producto *</label>
                   <select
                       class="form-control form-control-sm"
-                      formControlName="producto_salida">
+                      formControlName="producto_salida"
+                      (change)="getProductStock()"
+                    >
                     <option value="">SELECCIONE UNA OPCION</option>
-                    <option value="">pepito</option>
+                    <option
+                      *ngFor="let producto of getProducto"
+                      [value]="producto.codigo_producto "
+                    > {{producto.nombre}} </option>
                   </select>
                       <div
                         class="error"
@@ -207,8 +236,13 @@
                </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
-          <button type="button" class="btn btn-success">GUARDAR</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-success"
+            [disabled]="salidaForm.invalid"
+            (click)="salidakardex()"
+          >Guardar</button>
         </div>
       </div>
     </div>
@@ -343,13 +377,13 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
         <button
           type="button"
           class="btn btn-success"
           [disabled]="entradaForm.invalid"
           (click)="entradaKardex()"
-        >GUARDAR</button>
+        >Guardar</button>
       </div>
     </div>
   </div>

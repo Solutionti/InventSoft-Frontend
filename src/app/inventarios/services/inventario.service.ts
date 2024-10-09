@@ -33,6 +33,12 @@ export class InventarioService {
       return this.http.get(url, { params });
      }
 
+     getProductStock(codigo: any ) {
+      const url =  `${environment.apiInventsoft}getProductStock`;
+      let params = new HttpParams().set("codigo", codigo);
+      return this.http.get(url, { params });
+     }
+
      postAgregarProductos(datos: any){
       const url = `${environment.apiInventsoft}postAgregarProductos`;
 
@@ -67,5 +73,22 @@ export class InventarioService {
         usuario: datos[0].usuario,
       });
      }
+
+     salidakardex(datos: any){
+      const url = `${environment.apiInventsoft}salidakardex`;
+
+      return this.http.post(url,{
+        id_producto: datos[0].id_producto,
+        salida: datos[0].salida,
+        stock_salida: datos[0].stock_salida,
+        sede: datos[0].sede,
+        motivo: datos[0].motivo,
+        descripcion: datos[0].descripcion,
+        usuario: datos[0].usuario,
+      });
+     }
+
+
+
 
 }

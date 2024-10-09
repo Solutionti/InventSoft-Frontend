@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+import { response } from 'express';
 
 @Component({
   selector: 'app-inventario',
@@ -15,7 +17,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     MenuComponent,
     CommonModule,
     RouterOutlet,
-    ToastModule
+    ToastModule,
+    TableModule
 ],
   templateUrl: './inventario.component.html',
   styleUrl: './inventario.component.css',
@@ -38,10 +41,11 @@ export class InventarioComponent implements OnInit {
 
   }
 
+
   salidaForm: FormGroup = new FormGroup ({
     producto_salida: new FormControl('',[Validators.required]),
     cantidad_salida: new FormControl('',[Validators.required]),
-    stock_salida: new FormControl('',[Validators.required]),
+    stock_salida: new FormControl({value: '', disabled:true},[Validators.required]),
     seccion_salida: new FormControl('',[Validators.required]),
     motivo_salida: new FormControl('',[Validators.required]),
     comentarios_salida: new FormControl('',[Validators.required]),
@@ -186,9 +190,19 @@ export class InventarioComponent implements OnInit {
       this.InventarioServices
           .getProductoStock(codigo)
           .subscribe((response: any) => {
-            console.log(response);
             this.entradaForm.patchValue({
               stock_entrada: response.stock
+            });
+          })
+   }
+
+   getProductStock(){
+    let codigo = this.salidaForm.get("producto_salida")?.value;
+      this.InventarioServices
+          .getProductStock(codigo)
+          .subscribe((response: any) => {
+            this.salidaForm.patchValue({
+              stock_salida: response.stock
             });
           })
    }
@@ -235,20 +249,45 @@ export class InventarioComponent implements OnInit {
       motivo_entrada: this.entradaForm.get("motivo_entrada")?.value,
       comentarios_entrada: this.entradaForm.get("comentarios_entrada")?.value,
       usuario: localStorage.getItem("usuario"),
-    }
-  ];
+      }
+    ];
   this.InventarioServices
       .entradaKardex(crear)
       .subscribe((response: any) =>{
         if(response.status == 200){
           this.showSuccess(response.message);
-          //this.entradaForm.reset();
+          this.entradaForm.reset();
         }
         else{
           this.showError(response.message);
         }
       });
    }
+
+   salidakardex(){
+    let salida: any = [
+      {
+        id_producto: this.salidaForm.get('producto_salida')?.value,
+        salida: this.salidaForm.get('cantidad_salida')?.value,
+        stock_salida: this.salidaForm.get('stock_salida')?.value,
+        sede: this.salidaForm.get('seccion_salida')?.value,
+        motivo: this.salidaForm.get('motivo_salida')?.value,
+        descripcion: this.salidaForm.get('comentarios_salida')?.value,
+        usuario: localStorage.getItem('usuario'),
+      }
+    ];
+    this.InventarioServices
+        .salidakardex(salida)
+        .subscribe((response: any)=>{
+          if(response.status == 200){
+            this.showSuccess(response.message);
+            this.salidaForm.reset();
+          }
+          else{
+            this.showError(response.message);
+          }
+        });
+  }
 
    showError(message: string) {
     this.messageService.add(
