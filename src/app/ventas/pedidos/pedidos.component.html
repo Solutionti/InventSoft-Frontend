@@ -29,21 +29,56 @@
         <div class="row mt-1">
           <div class="col-md-9">
             <div class="table-responsive">
-              <table class="table table-striped table-hover">
-                <thead style="background-color: black !important;">
-                  <tr>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12"></th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CONSECUTIVO</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">TIPO PAGO</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">TOTAL</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CUENTA POR COBRAR</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">HORA</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">FECHA</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">ESTADO</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+              <p-table
+              #pedidos
+              [rows]="9"
+              [value]="getPedid"
+              [paginator]="true"
+              [globalFilterFields]="['nombre', 'getPedid.nombre', 'representative.name', 'status']"
+              [tableStyle]="{ 'min-width': '75rem' }"
+              [rowHover]="true"
+              dataKey="id"
+              currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} entradas"
+            >
+            <ng-template pTemplate="caption">
+              <div class="flex align-items-center justify-content-between">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <input
+                    pInputText
+                    type="text"
+                    class="form-control"
+                    (input)="pedidos.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..."
+                  />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th class=" text-white text-xs bg-default"></th>
+                <th class=" text-white text-xs bg-default">CONSECUTIVO</th>
+                <th class=" text-white text-xs bg-default">TIPO PAGO</th>
+                <th class=" text-white text-xs bg-default">TOTAL</th>
+                <th class=" text-white text-xs bg-default">CUENTA POR COBRAR</th>
+                <th class=" text-white text-xs bg-default">HORA</th>
+                <th class=" text-white text-xs bg-default">FECHA</th>
+                <th class=" text-white text-xs bg-default">ESTADO</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-getPedid>
+              <tr>
+                <td class="text-xs text-uppercase">  {{  getPedid.codigo_pedido  }}  </td>
+                <td class="text-xs text-uppercase">  {{ getPedid.consecutivo }}  </td>
+                <td class="text-xs text-uppercase">  {{ getPedid.tppago  }}  </td>
+                <td class="text-xs text-uppercase">  {{ getPedid.total }}  </td>
+                <td class="text-xs text-uppercase">  {{ getPedid.codigo_cliente }}  </td>
+                <td class="text-xs text-uppercase">  {{ getPedid.hora }}  </td>
+                <td class="text-xs text-uppercase">  {{ getPedid.fecha }}  </td>
+                <td class="text-xs text-uppercase">  {{ getPedid.estado }}  </td>
+              </tr>
+            </ng-template>
+           </p-table>
             </div>
           </div>
           <div class="col-md-3">
