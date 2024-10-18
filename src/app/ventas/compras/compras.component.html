@@ -37,40 +37,88 @@
         <div class="row mt-1">
           <div class="col-md-8">
             <div class="table-responsive">
-              <table class="table table-striped table-hover">
-                <thead style="background-color: black !important;">
-                  <tr>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12"></th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CATEGORIA</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">PROVEEDOR</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">PRECIO FACTURA</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">CUANTAS POR COBRAR</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">USUARIO</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">FECHA LIMITE</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">FECHA ACTUAL</th>
-                  </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+              <p-table
+              #compras
+              [rows]="8"
+              [value]="getCompra"
+              [paginator]="true"
+              [globalFilterFields]="['nombre', 'getCompra.nombre', 'representative.name', 'status']"
+              [tableStyle]="{ 'min-width': '75rem' }"
+              [rowHover]="true"
+              dataKey="id"
+              currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} entradas"
+            >
+            <ng-template pTemplate="caption">
+              <div class="flex align-items-center justify-content-between">
+                <span class="p-input-icon-left">
+                  <i class="pi pi-search"></i>
+                  <input
+                    pInputText
+                    type="text"
+                    class="form-control"
+                    (input)="compras.filterGlobal($any($event.target).value, 'contains')"
+                    placeholder="Buscar..."
+                  />
+                </span>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th class=" text-white text-xs bg-default"></th>
+                <th class=" text-white text-xs bg-default">CATEGORIA</th>
+                <th class=" text-white text-xs bg-default">PROVEEDOR</th>
+                <th class=" text-white text-xs bg-default">PRECIO FACTURA</th>
+                <th class=" text-white text-xs bg-default">CUANTAS POR COBRAR</th>
+                <th class=" text-white text-xs bg-default">USUARIO</th>
+                <th class=" text-white text-xs bg-default">FECHA LIMITE</th>
+                <th class=" text-white text-xs bg-default">FECHA ACTUAL</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-getCompra>
+              <tr>
+                <td class="text-xs text-uppercase">  {{ getCompra.codigo_gasto }}  </td>
+                <td class="text-xs text-uppercase">  {{ getCompra.categoria }}  </td>
+                <td class="text-xs text-uppercase">  {{ getCompra.proveedor }}  </td>
+                <td class="text-xs text-uppercase">  {{ getCompra.precio }}  </td>
+                <td class="text-xs text-uppercase">  {{ getCompra.porpagar }}  </td>
+                <td class="text-xs text-uppercase">  {{ getCompra.usuario }}  </td>
+                <td class="text-xs text-uppercase">  {{ getCompra.fecha_limite }}  </td>
+                <td class="text-xs text-uppercase">  {{ getCompra.fecha }}  </td>
+              </tr>
+            </ng-template>
+           </p-table>
             </div>
           </div>
           <div class="col-md-4">
+            <form [formGroup]="comprasForm">
             <div class="form-group">
               <label>Nombre</label>
-              <input type="text" class="form-control form-control-sm">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="compras_nombre"
+              >
             </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Usuario</label>
-                  <input type="text" class="form-control form-control-sm">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="compras_usuario"
+                  >
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group ">
                   <label>Contraseña</label>
                   <div class="input-group">
-                    <input type="password" class="form-control form-control-sm">
+                    <input
+                      type="password"
+                      class="form-control form-control-sm"
+                      formControlName="compras_contrasena"
+                    >
                     <!-- <button class="btn btn-primary" type="button"> <i class="fas fa-eye"></i> </button> -->
                   </div>
                 </div>
@@ -78,12 +126,17 @@
             </div>
             <div class="form-group">
               <label>Telefono</label>
-              <input type="number" class="form-control form-control-sm">
+              <input
+                type="number"
+                class="form-control form-control-sm"
+                formControlName="compras_telefono"
+              >
             </div>
             <div class="form-group">
               <label>Rol Usuario</label>
               <select
                 class="form-control form-control-sm"
+                formControlName="compras_rol"
               >
                 <option value="">Administrador</option>
                 <option value="">Vendedor</option>
@@ -93,11 +146,13 @@
               <label>Estado</label>
               <select
                 class="form-control form-control-sm"
+                formControlName="compras_estado"
               >
                 <option value="">Activo</option>
                 <option value="">Inactivo</option>
               </select>
             </div>
+          </form>
           </div>
         </div>
       </div>

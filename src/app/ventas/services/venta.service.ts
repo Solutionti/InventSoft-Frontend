@@ -15,5 +15,12 @@ export class VentaService {
     const url =  `${environment.apiInventsoft}getPedido`;
 
      return this.http.get(url);
-  }
+  };
+
+  getCompras(){
+    const url =  `${environment.apiInventsoft}getCompras`;
+
+    return this.http.get(url);
+  };
+
 }
