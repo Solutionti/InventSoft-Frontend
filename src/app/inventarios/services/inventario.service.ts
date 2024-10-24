@@ -39,25 +39,10 @@ export class InventarioService {
       return this.http.get(url, { params });
      }
 
-     postAgregarProductos(datos: any){
+     postAgregarProductos(formdata: FormData){
       const url = `${environment.apiInventsoft}postAgregarProductos`;
 
-      return this.http.post(url, {
-        categoria: datos[0].categoria,
-        url_imagen: datos[0].url_imagen,
-        codigo: datos[0].codigo,
-        codigo_barras: datos[0].codigo_barras,
-        nombre: datos[0].nombre,
-        medida: datos[0].medida,
-        precio: datos[0].precio,
-        costo_proveedor: datos[0].costo_proveedor,
-        moneda: datos[0].moneda,
-        descripcion: datos[0].descripcion,
-        stock: datos[0].stock,
-        cantidad: datos[0].cantidad,
-        producto_venta: datos[0].producto_venta,
-        producto_ecommerce: datos[0].producto_ecommerce,
-       });
+      return this.http.post(url,  formdata );
      }
 
      entradaKardex(datos: any){

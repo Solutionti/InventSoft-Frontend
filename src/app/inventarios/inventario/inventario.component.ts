@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
-import { response } from 'express';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-inventario',
@@ -30,6 +30,7 @@ export class InventarioComponent implements OnInit {
     private InventarioServices: InventarioService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
+    private sanitizer: DomSanitizer,
   ){
 
   }
@@ -209,33 +210,62 @@ export class InventarioComponent implements OnInit {
 
 
    postAgregarProductos(){
-    let crear : any =[
-      {
-      categoria: this.productoForm.get("categoria_productos")?.value,
-      url_imagen: this.productoForm.get("imagen_productos")?.value,
-      codigo_barras: this.productoForm.get("barras_productos")?.value,
-      nombre: this.productoForm.get("nombre_productos")?.value,
-      medida: this.productoForm.get("medida_productos")?.value,
-      precio: this.productoForm.get("precio_productos")?.value,
-      costo_proveedor: this.productoForm.get("costo_productos")?.value,
-      moneda: this.productoForm.get("moneda_productos")?.value,
-      descripcion: this.productoForm.get("descripcion_productos")?.value,
-      stock: this.productoForm.get("stock_productos")?.value,
-      cantidad: this.productoForm.get("cantidad_productos")?.value,
-      producto_ecommerce: this.productoForm.get("ecommerce_productos")?.value,
-    }
-  ];
-  this.InventarioServices
-      .postAgregarProductos(crear)
-      .subscribe((response: any)=> {
-        if(response.status == 200){
-          this.showSuccess(response.mesagge);
-          this.productoForm.reset();
-        }
-        else{
-          this.showError(response.mesagge);
-        }
+    // DECLARACION DE VARIABLES INDIVIDUALES
+    let url_imagen =  this.productoForm.get("imagen_productos")?.value,
+     categoria: any =  this.productoForm.get("categoria_productos")?.value,
+     codigo_barras: any =  this.productoForm.get("barras_productos")?.value,
+     nombre: any =  this.productoForm.get("nombre_productos")?.value,
+     medida: any =  this.productoForm.get("medida_productos")?.value,
+     precio: any =  this.productoForm.get("precio_productos")?.value,
+     costo_proveedor: any =  this.productoForm.get("costo_productos")?.value,
+     moneda: any =  this.productoForm.get("moneda_productos")?.value,
+     descripcion: any =  this.productoForm.get("descripcion_productos")?.value,
+     stock: any =  this.productoForm.get("stock_productos")?.value,
+     cantidad: any =  this.productoForm.get("cantidad_productos")?.value,
+     producto_ecommerce: any =  this.productoForm.get("ecommerce_productos")?.value;
+     let ecommerceAct: any  = "";
+     let usuario: any  = localStorage.getItem('usuario');
+     try {
+      const formdata = new FormData();
+
+      formdata.append('categoria', categoria);
+      formdata.append('codigo_barras', codigo_barras);
+      formdata.append('nombre', nombre);
+      formdata.append('medida', medida);
+      formdata.append('precio', precio);
+      formdata.append('costo_proveedor', costo_proveedor);
+      formdata.append('moneda', moneda);
+      formdata.append('descripcion', descripcion);
+      formdata.append('stock', stock);
+      formdata.append('cantidad', cantidad);
+      formdata.append('usuario', usuario);
+
+      if(producto_ecommerce == true ) {
+        ecommerceAct = 1;
+      }
+      else {
+        ecommerceAct = 0;
+      }
+      formdata.append('producto_ecommerce', ecommerceAct);
+      this.imagen1.forEach((element: any ) => {
+        formdata.append('url_imagen', this.imagen1[0]);
       });
+
+      this.InventarioServices
+          .postAgregarProductos(formdata)
+          .subscribe((response: any)=> {
+            if(response.status == 200){
+              this.showSuccess(response.message);
+              this.productoForm.reset();
+            }
+            else{
+              this.showError(response.message);
+            }
+          });
+     }
+     catch(e) {
+
+     }
    }
 
 
@@ -289,6 +319,19 @@ export class InventarioComponent implements OnInit {
         });
   }
 
+  public imagen1: any = [];
+  previsualizacion: string = "";
+  capturareImagen(e: any ) {
+    const imagen =  e.target as HTMLInputElement;
+    const archivo = e.target.files[0];
+
+    this.extraerBase64(archivo).then((imagen: any ) => {
+      this.previsualizacion = imagen.base;
+    });
+
+    this.imagen1.push(archivo);
+  }
+
    showError(message: string) {
     this.messageService.add(
       {
@@ -298,6 +341,27 @@ export class InventarioComponent implements OnInit {
       }
     );
   }
+
+  extraerBase64 = async($event: any ) => new Promise((resolve, reject) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+    }
+    catch (e) {
+    }
+  });
 
   showSuccess(message: string) {
     this.messageService.add({

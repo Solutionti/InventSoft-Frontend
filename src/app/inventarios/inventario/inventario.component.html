@@ -402,9 +402,14 @@
             <div class="col-md-12">
               <div class="text-center">
                 <img
+                  [src]="previsualizacion"
+                  class="img-fluid avatar mx-3"
+                  width="100px"
+                >
+                <!-- <img
                   src="https://cilaymar.co/wp-content/uploads/2018/06/DE-TODITO-NATURAL-600x600.jpg"
                   class="avatar avatar-xl avatar-circle"
-                >
+                > -->
               </div>
             </div>
           </div>
@@ -534,7 +539,7 @@
                   aria-label="Default select example"
                   formControlName="moneda_productos"
                 >
-                  <option value="PEN">Soles (/s) *</option>
+                  <option value="PEN">Pesos (col) *</option>
                 </select>
                     <div
                       class="error"
@@ -582,6 +587,7 @@
                   type="file"
                   class="form-control form-control-sm"
                   formControlName="imagen_productos"
+                  (change)="capturareImagen($event)"
                 >
                 <div
                       class="error"

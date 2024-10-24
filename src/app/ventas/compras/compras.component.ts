@@ -48,4 +48,12 @@ export class ComprasComponent {
 
   };
 
+  getComprasInsert(){
+    let crear: any = [
+      {
+        categoria: this.comprasForm.get('')?.value,
+      }
+    ]
+  };
+
 }

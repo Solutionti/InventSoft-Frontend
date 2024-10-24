@@ -23,4 +23,19 @@ export class VentaService {
     return this.http.get(url);
   };
 
+  getComprasInsert(datos: any){
+    const url = `${environment.apiInventsoft}getComprasInsert`;
+
+    return this.http.post(url, {
+      categoria: datos[0].categoria,
+      proveedor: datos[0].proveedor,
+      fecha: datos[0].fecha,
+      fecha_limite: datos[0].fecha_limite,
+      descripcion: datos[0].descripcion,
+      precio: datos[0].precio,
+      usuario: datos[0].usuario,
+      porpagar: datos[0].porpagar,
+    });
+  }
+
 }
