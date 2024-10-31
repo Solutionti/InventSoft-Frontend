@@ -271,16 +271,18 @@ export class InventarioComponent implements OnInit {
 
    entradaKardex(){
     let crear: any = [
-      {
-      producto_entrada: this.entradaForm.get("producto_entrada")?.value,
-      cantidad_entrada: this.entradaForm.get("cantidad_entrada")?.value,
-      stock_entrada: this.entradaForm.get("stock_entrada")?.value,
-      seccion_entrada: this.entradaForm.get("seccion_entrada")?.value,
-      motivo_entrada: this.entradaForm.get("motivo_entrada")?.value,
-      comentarios_entrada: this.entradaForm.get("comentarios_entrada")?.value,
-      usuario: localStorage.getItem("usuario"),
+     {
+       producto_entrada: this.entradaForm.get("producto_entrada")?.value,
+       cantidad_entrada: this.entradaForm.get("cantidad_entrada")?.value,
+       stock_entrada: this.entradaForm.get("stock_entrada")?.value,
+       seccion_entrada: this.entradaForm.get("seccion_entrada")?.value,
+       motivo_entrada: this.entradaForm.get("motivo_entrada")?.value,
+       comentarios_entrada: this.entradaForm.get("comentarios_entrada")?.value,
+       usuario: localStorage.getItem("usuario"),
+       stockact: (this.entradaForm.get("cantidad_entrada")?.value + this.entradaForm.get("stock_entrada")?.value)
       }
     ];
+
   this.InventarioServices
       .entradaKardex(crear)
       .subscribe((response: any) =>{
@@ -295,8 +297,10 @@ export class InventarioComponent implements OnInit {
    }
 
    salidakardex(){
+    //creo un array
     let salida: any = [
       {
+        //con esto atrapo los datos que ingresan al formulario
         id_producto: this.salidaForm.get('producto_salida')?.value,
         salida: this.salidaForm.get('cantidad_salida')?.value,
         stock_salida: this.salidaForm.get('stock_salida')?.value,
@@ -304,6 +308,7 @@ export class InventarioComponent implements OnInit {
         motivo: this.salidaForm.get('motivo_salida')?.value,
         descripcion: this.salidaForm.get('comentarios_salida')?.value,
         usuario: localStorage.getItem('usuario'),
+        stockActualizar: (this.salidaForm.get('stock_salida')?.value - this.salidaForm.get('cantidad_salida')?.value)
       }
     ];
     this.InventarioServices

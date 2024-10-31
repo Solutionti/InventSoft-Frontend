@@ -56,6 +56,7 @@ export class InventarioService {
         motivo_entrada: datos[0].motivo_entrada,
         comentarios_entrada: datos[0].comentarios_entrada,
         usuario: datos[0].usuario,
+        stockact: datos[0].stockact
       });
      }
 
@@ -70,6 +71,7 @@ export class InventarioService {
         motivo: datos[0].motivo,
         descripcion: datos[0].descripcion,
         usuario: datos[0].usuario,
+        stockActualizar: datos[0].stockActualizar,
       });
      }
 
