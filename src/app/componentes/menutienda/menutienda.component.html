@@ -1,0 +1,242 @@
+<header id="header" class="navbar navbar-expand-lg navbar-end navbar-dark navbar-absolute-top">
+    <div class="container mt-3">
+       <nav class="js-mega-menu navbar-nav-wrap">
+         <a class="navbar-brand" href="../index.html" aria-label="Front">
+           <img class="" src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/logos/logo.svg" alt="Logo" width="200px;">
+         </a>
+         
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-default">
+             <i class="fas fa-list text-white"></i>
+           </span>
+           <span class="navbar-toggler-toggled">
+             <i class="fas fa-times"></i>
+           </span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+           <div class="navbar-absolute-top-scroller">
+             <ul class="navbar-nav">
+               <li class="hs-has-sub-menu nav-item ">
+                 <a
+                 class="nav-link text-white mouse"
+                 href="#"
+                 role="button"
+               >
+                 Tienda
+               </a>
+               </li>
+               <li class="hs-has-sub-menu nav-item">
+                <a
+                class="nav-link text-white mouse"
+                href="#"
+                role="button"
+              >
+                Categorias
+              </a>
+              </li>
+               <li class="hs-has-sub-menu nav-item">
+                 <a
+                 class="nav-link text-white mouse"
+                 href="#"
+                 role="button"
+               >
+                 Consulta tu pedido
+               </a>
+               </li>
+               <li class="hs-has-sub-menu nav-item">
+                 <a
+                 class="nav-link text-white mouse"
+                 href="#"
+                 role="button"
+               >
+                 Sorteos
+               </a>
+               </li>
+               <li class="nav-item mt-2">
+                 <a
+                   class="btn btn-black btn-icon btn-sm avatar-circle"
+                   target="_blank"
+                   href="#"
+                 >
+                 <i class="fab fa-facebook fa-1x text-white"></i>
+                 </a>
+                 <a
+                   class="btn btn-black btn-icon btn-sm avatar-circle"
+                   target="_blank"
+                   href="#"
+                 >
+                 <i class="fab fa-instagram fa-1x text-white"></i>
+                 </a>
+                 <a
+                   class="btn btn-black btn-icon btn-sm avatar-circle"
+                   data-bs-toggle="modal"
+                   data-bs-target="#staticBackdrop"
+                 >
+                 <i class="fas fa-search fa-1x text-white"></i>
+                 </a>
+                 <a
+                   class="btn btn-black btn-icon btn-sm avatar-circle"
+                 >
+                 <i class="fas fa-user fa-1x text-white"></i>
+                 </a>
+               </li> 
+             </ul>
+           </div>
+         </div>
+       </nav>
+     </div>
+   </header>
+   <!--  -->
+   <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <div class="row">
+           <div class="col-md-12">
+ <div class="mb-4">
+   <div class="mb-3">
+     <h4>24 resultados <span class="text-body small">para "Herramientas de desarrollo"
+     </span></h4>
+   </div>
+   <form>
+     <div class="input-card border">
+       <div class="input-card-form">
+         <label for="searchAppsForm" class="form-label visually-hidden">Buscar Producto</label>
+         <div class="input-group input-group-merge">
+           <span class="input-group-prepend input-group-text">
+             <i class="bi-search"></i>
+           </span>
+           <input type="text" class="form-control" id="searchAppsForm" placeholder="Buscar Producto" aria-label="Buscar Producto">
+         </div>
+       </div>
+       <button type="button" class="btn btn-primary">
+         <i class="fas fa-arrow-right"></i>
+       </button>
+     </div>
+   </form>
+ </div>
+           </div>
+         </div>
+       </div>
+       
+     </div>
+   </div>
+ </div>
+ 
+ <!-- MODAL DEL CARRITO -->
+ <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal-dialog modal-fullscreen">
+     <div class="modal-content ">
+       <div class="modal-header bg-danger">
+         <h1 class="modal-title fs-5 text-white mt-3" id="staticBackdropLabel">
+           TU CARRITO DE COMPRAS
+           <br>
+           <br>
+         </h1>
+         <button type="button" class="btn-close text-white"  class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+       <div class="container my-5 py-3 z-depth-1 rounded">
+ <section class="dark-grey-text">
+   <div class="table-responsive">
+   <div class="text-center" id="CarritoVacio">
+ 
+   </div>
+     <table class="table product-table mb-0" id="sincarrito">
+       <thead class="mdb-color lighten-5">
+         <tr>
+           <th></th>
+           <th class="font-weight-bold">
+             Producto
+           </th>
+           
+           <th></th>
+           <th class="font-weight-bold">
+             Precio
+           </th>
+           <th class="font-weight-bold">
+             Cantidad
+           </th>
+           <th>Total</th>
+           <th></th>
+         </tr>
+       </thead>
+       <tbody class="tbody">
+       
+       </tbody>
+       <tr>
+             <td colspan="3"></td>
+             <td>
+               <h4 class="mt-2 text-primary">
+                 <strong>Total</strong>
+               </h4>
+             </td>
+             <td class="text-right">
+               <h4 class="mt-2">
+                 <strong class="itemCartTotal text-primary"></strong>
+               </h4>
+             </td>
+             <td colspan="3" class="text-right">
+               <a
+                 type="button"
+                 class="btn btn-outline-danger btn-rounded btn-sm"
+                 href="#"
+               >
+                 Pasar a pedido
+                 <i class="fas fa-angle-right right"></i>
+               </a>
+             </td>
+           </tr>
+     </table>
+   </div>
+ </section>
+ </div>
+       </div>
+       
+     </div>
+   </div>
+ </div>
+ <style>
+     .fixedButton{
+       position: fixed !important;
+       bottom: 20px !important;
+       right: 0px !important; 
+       padding: 10px !important;
+       z-index: 20;
+     }
+     .fixedButton2{
+       position: fixed !important;
+       bottom: 82px !important;
+       right: 0px !important; 
+       padding: 10px !important;
+       z-index: 20;
+     } 
+   </style>
+   <!-- ========== END FOOTER ========== -->
+ <div class="e me-4 fixedButton2 ">
+   <a
+     type="button"
+     data-bs-toggle="modal"
+     data-bs-target="#staticBackdrop"
+   >
+     <button
+       class="btn btn-danger btn-md avatar-circle"
+       
+     >
+       <i class="fas fa-shopping-cart"></i>
+     </button>
+   </a>
+ </div>
+ <div class="e me-4 fixedButton ">
+   <a
+     type="button"
+     target="_blank"
+     href="https://wa.me/+573155639791"
+   >
+     <button class="btn btn-success btn-md avatar-circle"><i class="fab fa-whatsapp"></i></button>
+   </a>
+ </div>

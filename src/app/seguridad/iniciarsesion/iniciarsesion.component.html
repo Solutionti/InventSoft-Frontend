@@ -26,25 +26,60 @@
             <h5 class="text-uppercase">Iniciar Sesión</h5>
           </div>
           <div class="row px-xl-5 px-sm-4 px-3">
-            <div class="position-relative text-center">
-              <!-- <p class="text-sm font-weight-bold  text-secondary text-border d-inline z-index-2 bg-white px-1">
-                <span class="cyan-text lead font-weight-bold">Medical</span> <span class="rosa-text lead font-weight-bold">Clinic</span>
-              </p> -->
-            </div>
+            <!-- <div class="position-relative text-center">
+              <p class="text-sm font-weight-bold  text-secondary text-border d-inline z-index-2 bg-white px-1">
+                <span class="text-primary lead font-weight-bold">Invent</span> <span class="text-danger lead font-weight-bold">Soft</span>
+              </p>
+            </div> -->
           </div>
           <div class="card-body">
-            <form role="form" method="post" validate id="FormLOG">
+            <form [formGroup]="loginForm">
               <div class="mb-3">
-                <input type="text" required class="form-control" id="correo" value=""  placeholder="Usuario">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Usuario"
+                  formControlName="usuario"
+                >
               </div>
               <div class="mb-3">
-                <input type="password" id="password" value="" class="form-control" required placeholder="Contraseña">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Contraseña"
+                  formControlName="password"
+                >
               </div>
-
+              <div class="mb-3">
+                <select
+                  class="form-control "
+                  formControlName="dia"
+                >
+                  <option value="">Seleccione el dia</option>
+                  <option value="1">Lunes</option>
+                  <option value="2">Martes</option>
+                  <option value="3">Miercoles</option>
+                  <option value="4">Jueves</option>
+                  <option value="5">Viernes</option>
+                  <option value="6">Sabado</option>
+                  <option value="7">Domingo</option>
+                </select>
+              </div>
               <div class="text-center">
-                <button type="submit" class="btn btn-dark text-white w-100 my-4 mb-2" id="login">INGRESAR</button>
+                <button
+                  type="button"
+                  class="btn btn-dark text-white w-100 my-4 mb-2"
+                  [disabled]="loginForm.invalid"
+                  (click)="iniciarSesion()"
+                >
+                  INGRESAR
+                </button>
               </div>
-              <!-- <p class="text-sm mt-3 mb-0">No tiene usuario y contraseña? <a href="javascript:;" class="text-dark font-weight-bolder">Solicitar</a></p> -->
+              <p class="text-sm mt-3 mb-0">No tiene usuario y contraseña?
+                <a href="#" class="text-primary font-weight-bolder">
+                  Solicitar
+                </a>
+              </p>
             </form>
           </div>
         </div>
@@ -62,9 +97,7 @@
     <div class="row">
       <div class="col-8 mx-auto text-center mt-1">
         <h6 class="mb-0 text-secondary">
-          Todos los derechos © <script>
-            document.write(new Date().getFullYear())
-          </script>InventSoft<small style="color: yellow;">Co</small><small style="color: blue;">lom</small><small style="color: red;">bia</small>
+          Todos los derechos © 2025 InventSoft<small style="color: yellow;">Co</small><small style="color: blue;">lom</small><small style="color: red;">bia</small>
         </h6>
       </div>
     </div>

@@ -65,13 +65,13 @@ export class InventarioComponent implements OnInit {
     categoria_productos: new FormControl('',[Validators.required]),
     nombre_productos: new FormControl('',[Validators.required]),
     barras_productos: new FormControl(''),
-    medida_productos: new FormControl('',[Validators.required]),
-    cantidad_productos: new FormControl('',[Validators.required]),
+    medida_productos: new FormControl('Unidades',[Validators.required]),
+    cantidad_productos: new FormControl('1',[Validators.required]),
     precio_productos: new FormControl('',[Validators.required]),
-    moneda_productos: new FormControl('',[Validators.required]),
+    moneda_productos: new FormControl('PEN',[Validators.required]),
     imagen_productos: new FormControl('',[Validators.required]),
     costo_productos: new FormControl('',[Validators.required]),
-    stock_productos: new FormControl('',[Validators.required]),
+    stock_productos: new FormControl('0',[Validators.required]),
     ecommerce_productos: new FormControl('',),
     descripcion_productos: new FormControl(''),
   });
@@ -289,6 +289,7 @@ export class InventarioComponent implements OnInit {
         if(response.status == 200){
           this.showSuccess(response.message);
           this.entradaForm.reset();
+          this.getProductos();
         }
         else{
           this.showError(response.message);
@@ -317,6 +318,7 @@ export class InventarioComponent implements OnInit {
           if(response.status == 200){
             this.showSuccess(response.message);
             this.salidaForm.reset();
+            this.getProductos();
           }
           else{
             this.showError(response.message);
@@ -346,7 +348,6 @@ export class InventarioComponent implements OnInit {
       }
     );
   }
-
   extraerBase64 = async($event: any ) => new Promise((resolve, reject) => {
     try {
       const unsafeImg = window.URL.createObjectURL($event);

@@ -28,7 +28,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/inicio.js"
+              "src/assets/js/tienda.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,

@@ -8,9 +8,11 @@ let backButton = document.getElementById('back');
 nextButton.onclick = function(){
     showSlider('next');
 }
+
 prevButton.onclick = function(){
     showSlider('prev');
 }
+
 let unAcceppClick;
 const showSlider = (type) => {
     nextButton.style.pointerEvents = 'none';
@@ -29,7 +31,7 @@ const showSlider = (type) => {
     unAcceppClick = setTimeout(()=>{
         nextButton.style.pointerEvents = 'auto';
         prevButton.style.pointerEvents = 'auto';
-    }, 2000)
+    }, 1000)
 }
 seeMoreButtons.forEach((button) => {
     button.onclick = function(){

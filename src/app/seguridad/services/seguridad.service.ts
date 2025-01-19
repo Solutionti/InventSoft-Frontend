@@ -14,9 +14,11 @@ export class SeguridadService {
   getUsuarios(){
     const url =  `${environment.apiInventsoft}getUsuarios`;
 
-     return this.http.get(url);
+    return this.http.get(url);
   }
 
+  iniciarSesion() {
 
+  }
 
 }

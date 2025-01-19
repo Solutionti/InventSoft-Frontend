@@ -40,9 +40,9 @@ export class UsuariosComponent implements OnInit{
     usuario_contraseña: new FormControl(''),
     usuario_correo: new FormControl(''),
     usuario_telefono: new FormControl(''),
-    usuario_empresa: new FormControl(''),
-    usuario_rol: new FormControl(''),
-    usuario_estado: new FormControl(''),
+    usuario_empresa: new FormControl('InventSoft'),
+    usuario_rol: new FormControl('Administrador'),
+    usuario_estado: new FormControl('Activo'),
   });
 
   getUsuario: any [] = [];

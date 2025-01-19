@@ -8,17 +8,12 @@ import { ComprasComponent } from './ventas/compras/compras.component';
 import { PedidosComponent } from './ventas/pedidos/pedidos.component';
 import { ProveedoresComponent } from './ventas/proveedores/proveedores.component';
 import { VentaComponent } from './ventas/venta/venta.component';
-import { EcommerceinicioComponent } from './ecommerce/ecommerceinicio/ecommerceinicio.component';
+import { TiendaComponent } from './ecommerce/tienda/tienda.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: IniciarsesionComponent,
-  },
-  // RUTAS DEL ECOMMERCE
-  {
-    path: 'tienda/inicio',
-    component: EcommerceinicioComponent,
   },
   {
     path: 'inventarios',
@@ -52,4 +47,8 @@ export const routes: Routes = [
     path: 'venta',
     component: VentaComponent,
   },
+  {
+    path: 'tienda',
+    component: TiendaComponent,
+  }
 ];
