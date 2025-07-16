@@ -3,6 +3,14 @@
 <!-- * * * * * * * * * * * JERSON GALVEZ ENSUNCHO * * * * * * * * * * * -->
 <!-- ******* * * * * * * * PROYECTO INVENTSOFT * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+<div  [hidden]="spinner" class="overlay z-index">
+  <div class="dot-wave">
+    <div class="dot-wave__dot"></div>
+    <div class="dot-wave__dot"></div>
+    <div class="dot-wave__dot"></div>
+    <div class="dot-wave__dot"></div>
+  </div>
+</div>
 <p-toast position="top-right"/>
 <div class="min-height-300 bg-default position-absolute w-100"></div>
 <app-menu></app-menu>
@@ -29,12 +37,12 @@
                 >
                   <i class="fas fa-pen"></i> Agregar producto
                 </button>
-                <button
+                <!-- <button
                   class="btn btn-dark text-white font-weight-bold btn-xs mx-2"
                   data-bs-toggle="modal" data-bs-target="#consulta"
                 >
                   <i class="fas fa-plus"></i> Consulta
-                </button>
+                </button> -->
                 <button
                   class="btn btn-success text-white font-weight-bold btn-xs mx-2"
                   data-bs-toggle="modal" data-bs-target="#entrada"
@@ -80,26 +88,69 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                   <tr>
-                    <th class=" text-white text-xs bg-default">IMAGEN</th>
-                    <th class=" text-white text-xs bg-default">CODIGO</th>
-                    <th class=" text-white text-xs bg-default">NOMBRE</th>
-                    <th class=" text-white text-xs bg-default">CATEGORIA</th>
+                    <th class=" text-white text-xs bg-default text-center"></th>
+                    <th class=" text-white text-xs bg-default">DATOS DEL PRODUCTO</th>
                     <th class=" text-white text-xs bg-default">VALOR</th>
                     <th class=" text-white text-xs bg-default">STOCK</th>
+                    <th class=" text-white text-xs bg-default">FECHA</th>
+                    <th class=" text-white text-xs bg-default">ECOMMERCE?</th>
+                    <th class=" text-white text-xs bg-default">ESTADO</th>
                   </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-getProducto>
                   <tr>
-                    <td class="text-xs text-uppercase">
-                      <div class="text-center">
-                        <img [src]="getProducto.url_imagen" class="avatar avatar-sm avatar-circle">
+                    <td>
+                      <a
+                        class="badge bg-success"
+                        title="Actualizar productos"
+                        data-bs-toggle="modal"
+                        data-bs-target="#agregarProducto"
+                        (click)="getProductoModal(getProducto)"
+                      >
+                        <i class="fas fa-pen fa-xs text-white"></i>
+                      </a>
+                    </td>
+                    <td >
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img
+                            [src]="getProducto.url_imagen"
+                            class="avatar avatar-sm me-3"
+                          >
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <p class="mb-0 text-xs text-uppercase"> {{ getProducto.nombre + ' - ' + getProducto.codigo }}</p>
+                          <p class="text-xs text-danger mb-0 text-uppercase">{{ getProducto.categorias }}</p>
+                        </div>
                       </div>
                     </td>
-                    <td class="text-xs text-uppercase">  {{ getProducto.codigo }}  </td>
-                    <td class="text-xs text-uppercase">  {{ getProducto.nombre }}  </td>
-                    <td class="text-xs text-uppercase">  {{ getProducto.categoria  }}  </td>
-                    <td class="text-xs text-uppercase">  {{ getProducto.precio }}  </td>
-                    <td class="text-xs text-uppercase">  {{ getProducto.stock }}  </td>
+                    <td class="text-xs text-uppercase">  ${{ getProducto.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.stock }} UNI  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.fecha }}  </td>
+                    <td class="text-xs text-uppercase" *ngIf="getProducto.producto_ecommerce == '0'; else elseBlock2">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefault"
+                        >
+                      </div>
+                    </td>
+                    <ng-template #elseBlock2>
+                      <td>
+                        <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefaultchecked"
+                          checked
+                        >
+                      </div>
+                      </td>
+                    </ng-template>
+                    <td class="text-xs text-uppercase badge badge-success mt-4">  {{ getProducto.estado }}   </td>
                   </tr>
                 </ng-template>
                </p-table>
@@ -523,6 +574,7 @@
                   type="number"
                   class="form-control form-control-sm"
                   formControlName="precio_productos"
+                  
                 >
                   <div
                     class="error"

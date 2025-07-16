@@ -4,12 +4,14 @@ import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 
 
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     TableModule,
-    ToastModule
+    ToastModule,
   ]
 })
+
 export class VentasModule { }

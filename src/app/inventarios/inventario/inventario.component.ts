@@ -18,7 +18,7 @@ import { DomSanitizer } from '@angular/platform-browser';
     CommonModule,
     RouterOutlet,
     ToastModule,
-    TableModule
+    TableModule,
 ],
   templateUrl: './inventario.component.html',
   styleUrl: './inventario.component.css',
@@ -32,16 +32,17 @@ export class InventarioComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private sanitizer: DomSanitizer,
   ){
-
+    this.spinner = false;
   }
 
   ngOnInit(): void {
-
+    this.spinner = false;
     this.getProductos();
     this.getCategorias();
-
+    this.spinner = true;
   }
 
+  spinner = false;
 
   salidaForm: FormGroup = new FormGroup ({
     producto_salida: new FormControl('',[Validators.required]),
@@ -69,7 +70,7 @@ export class InventarioComponent implements OnInit {
     cantidad_productos: new FormControl('1',[Validators.required]),
     precio_productos: new FormControl('',[Validators.required]),
     moneda_productos: new FormControl('PEN',[Validators.required]),
-    imagen_productos: new FormControl('',[Validators.required]),
+    imagen_productos: new FormControl(''),
     costo_productos: new FormControl('',[Validators.required]),
     stock_productos: new FormControl('0',[Validators.required]),
     ecommerce_productos: new FormControl('',),
@@ -168,14 +169,15 @@ export class InventarioComponent implements OnInit {
     return this.productoForm.get('venta_productos') as FormControl;
   }
 
-    getProducto: any [] = [];
-    getProductos(){
+   getProducto: any [] = [];
+   getProductos(){
       this.InventarioServices
           .getProductos()
           .subscribe((response: any) => {
           this.getProducto = response;
          })
- }
+   }
+
    getCategoria: any [] = [];
    getCategorias(){
       this.InventarioServices
@@ -210,6 +212,7 @@ export class InventarioComponent implements OnInit {
 
 
    postAgregarProductos(){
+    this.spinner = false;
     // DECLARACION DE VARIABLES INDIVIDUALES
     let url_imagen =  this.productoForm.get("imagen_productos")?.value,
      categoria: any =  this.productoForm.get("categoria_productos")?.value,
@@ -257,9 +260,12 @@ export class InventarioComponent implements OnInit {
             if(response.status == 200){
               this.showSuccess(response.message);
               this.productoForm.reset();
+              this.getProductos();
+              this.spinner = true;
             }
             else{
               this.showError(response.message);
+              this.spinner = true;
             }
           });
      }
@@ -376,4 +382,23 @@ export class InventarioComponent implements OnInit {
       detail: message
     });
   }
+
+  getProductoModal(producto: any ) {
+    this.previsualizacion = producto.url_imagen;
+
+    this.productoForm.patchValue({
+      categoria_productos: producto.categoria,
+      nombre_productos: producto.nombre,
+      barras_productos: producto.codigo_barras,
+      medida_productos: producto.medida,
+      cantidad_productos: "1",
+      precio_productos: producto.precio,
+      moneda_productos: producto.moneda,
+      costo_productos: producto.costo_proveedor,
+      stock_productos: producto.stock,
+      descripcion_productos: producto.descripcion,
+    });
+  }
+
+  
 }

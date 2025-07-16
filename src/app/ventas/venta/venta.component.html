@@ -19,7 +19,7 @@
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 " href="javascript:;">InventSoft</a></li>
-                    <li class="breadcrumb-item text-sm  active" aria-current="page">Venta</li>
+                    <li class="breadcrumb-item text-sm  active" aria-current="page">Ventas</li>
                   </ol>
                 </nav>
               </div>
@@ -133,7 +133,13 @@
                     <input type="text" class="form-control form-control-sm">
                   </div>
                   <div class="col-md-1 mt-4">
-                    <button class="btn btn-danger btn-xs mt-1"> <i class="fas fa-search"></i> </button>
+                    <button
+                      class="btn btn-danger btn-xs mt-1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalproductos"
+                    > 
+                      <i class="fas fa-search"></i>
+                    </button>
                   </div>
                 </div>
                 <hr class="text-success" class="height: 10px !important;">
@@ -191,5 +197,115 @@
       </div>
     </div>
  </main>
+ <!--TABLA DE PRODUCTOS -->
+ <!-- Modal -->
+<div class="modal fade" id="modalproductos" tabindex="-1" aria-labelledby="modalproductosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalproductosLabel">PRODUCTOS DE LA TIENDA</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p-table
+                  #inventario
+                  [rows]="10"
+                  [value]="getProducto"
+                  [paginator]="true"
+                  [globalFilterFields]="['nombre', 'getProducto.nombre', 'representative.name', 'status']"
+                  [tableStyle]="{ 'min-width': '75rem' }"
+                  [rowHover]="true"
+                  dataKey="id"
+                  currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} entradas"
+                >
+                <ng-template pTemplate="caption">
+                  <div class="flex align-items-center justify-content-between">
+                    <span class="p-input-icon-left">
+                      <i class="pi pi-search"></i>
+                      <input
+                        pInputText
+                        type="text"
+                        class="form-control"
+                        (input)="inventario.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Buscar..."
+                      />
+                    </span>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th class=" text-white text-xs bg-default text-center"></th>
+                    <th class=" text-white text-xs bg-default">DATOS DEL PRODUCTO</th>
+                    <th class=" text-white text-xs bg-default">VALOR</th>
+                    <th class=" text-white text-xs bg-default">STOCK</th>
+                    <th class=" text-white text-xs bg-default">FECHA</th>
+                    <th class=" text-white text-xs bg-default">ECOMMERCE?</th>
+                    <th class=" text-white text-xs bg-default">ESTADO</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-getProducto>
+                  <tr>
+                    <td>
+                      <a
+                        class="badge bg-success"
+                        title="Actualizar productos"
+                        data-bs-toggle="modal"
+                        
+                      >
+                        <i class="fas fa-check fa-xs text-white"></i>
+                      </a>
+                    </td>
+                    <td >
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img
+                            [src]="getProducto.url_imagen"
+                            class="avatar avatar-sm me-3"
+                          >
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <p class="mb-0 text-xs text-uppercase"> {{ getProducto.nombre + ' - ' + getProducto.codigo }}</p>
+                          <p class="text-xs text-danger mb-0 text-uppercase">{{ getProducto.categorias }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-xs text-uppercase">  ${{ getProducto.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.stock }} UNI  </td>
+                    <td class="text-xs text-uppercase">  {{ getProducto.fecha }}  </td>
+                    <td class="text-xs text-uppercase" *ngIf="getProducto.producto_ecommerce == '0'; else elseBlock2">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefault"
+                        >
+                      </div>
+                    </td>
+                    <ng-template #elseBlock2>
+                      <td>
+                        <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefaultchecked"
+                          checked
+                        >
+                      </div>
+                      </td>
+                    </ng-template>
+                    <td class="text-xs text-uppercase badge badge-success mt-4">  {{ getProducto.estado }}   </td>
+                  </tr>
+                </ng-template>
+               </p-table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Vender</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
